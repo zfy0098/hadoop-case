@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hadoop-version>2.7.6</hadoop-version>
         <!-- compile provided -->
-        <scope>compile</scope>
+        <scope>provided</scope>
         <spark.version>2.2.0</spark.version>
     </properties>
 
@@ -146,6 +146,15 @@
         </dependency>
 
 
+
+        <!-- https://mvnrepository.com/artifact/edu.umd/cloud9 -->
+        <dependency>
+            <groupId>edu.umd</groupId>
+            <artifactId>cloud9</artifactId>
+            <version>1.4.17</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -158,7 +167,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.hadoop.ZipApk</mainClass>
+                            <!--<mainClass>com.hadoop.leftouterjoin.Case</mainClass>-->
                         </manifest>
                     </archive>
                     <descriptorRefs>
