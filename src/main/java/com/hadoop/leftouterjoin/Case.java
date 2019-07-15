@@ -28,6 +28,10 @@ import java.util.Iterator;
 public class Case {
 
 
+    /**
+     *    元文件  music_meta   user_watch_pref.sml
+     */
+
     public static class MapOutWritable implements WritableComparable<MapOutWritable> {
         private String musicID;
         private String userID;

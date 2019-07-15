@@ -5,10 +5,12 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
+import org.omg.CORBA.ORBPackage.InconsistentTypeCode;
 import scala.Tuple2;
 import scala.Tuple3;
 import scala.Tuple7;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -44,8 +46,7 @@ public class Demo10 implements Serializable {
 
         List<Tuple2<String, Iterable<Tuple2<String, Integer>>>> debug1 = moviesGrouped.collect();
         for (Tuple2<String, Iterable<Tuple2<String, Integer>>> tu : debug1) {
-            System.out.println("debug1  tu._1 : " + tu._1);
-            System.out.println("debug1  tu,_2 : " + tu._2);
+            System.out.println("debug1  tu._1 : " + tu._1 + " , " +  " tu,_2 : " + tu._2);
             System.out.println("-------------------");
         }
 
@@ -57,6 +58,7 @@ public class Demo10 implements Serializable {
                 Iterable<Tuple2<String, Integer>> pairsOfUserAndRating = stringIterableTuple2._2;
                 int number = 0;
                 for (Tuple2<String, Integer> tuple2 : pairsOfUserAndRating) {
+                    System.out.println("moviesGrouped.flatMapToPair : " + movie + " , " + tuple2._1 + " , " + tuple2._2);
                     number++;
                     list.add(tuple2);
                 }
@@ -80,7 +82,7 @@ public class Demo10 implements Serializable {
         List<Tuple2<String, Tuple3<String, Integer, Integer>>> userRDDList = userRDD.collect();
         for (Tuple2<String, Tuple3<String, Integer, Integer>> tuple2 : userRDDList) {
             //  打印结果 用户 电影  评分  评分人数
-            System.out.println("userRDDList   debug 3 -- " + tuple2._1 + "--- values :" + tuple2._2 + " , " + tuple2._2._1() + "\t" + tuple2._2._2() + "\t" + tuple2._2._3() + "\t");
+            System.out.println("userRDDList   debug 2 -- " + tuple2._1 + "--- values :" + tuple2._2 + " , " + tuple2._2._1() + "\t" + tuple2._2._2() + "\t" + tuple2._2._3() + "\t");
         }
 
         JavaPairRDD<String, Iterable<Tuple3<String, Integer, Integer>>> groupedByUser = userRDD.groupByKey();
@@ -111,7 +113,7 @@ public class Demo10 implements Serializable {
         List<Tuple2<String, Tuple2<Tuple3<String, Integer, Integer>, Tuple3<String, Integer, Integer>>>> debug55 = filteredRDD.collect();
 
         for (Tuple2<String, Tuple2<Tuple3<String, Integer, Integer>, Tuple3<String, Integer, Integer>>> t2 : debug55) {
-            System.out.println("debug55 , key : +" + t2._1 + " , values :" + t2._2);
+            System.out.println("debug 6  , key : +" + t2._1 + " , values :" + t2._2);
         }
 
         JavaPairRDD<Tuple2<String, String>, Tuple7<Integer, Integer, Integer, Integer, Integer, Integer, Integer>> moviePair = filteredRDD.mapToPair(s -> {
@@ -134,7 +136,16 @@ public class Demo10 implements Serializable {
 
         JavaPairRDD<Tuple2<String, String>, Tuple3<Double, Double, Double>> corr = corrRDD.mapValues(s -> calculateCorrelations(s));
 
-        corr.saveAsTextFile("/Users/zhoufy/sparktest/demo10out/");
+
+
+        List<Tuple2<Tuple2<String,String>, Tuple3<Double,Double,Double>>> out = corr.collect();
+
+        for (Tuple2<Tuple2<String,String>, Tuple3<Double,Double,Double>> tuple2 : out){
+            System.out.println(tuple2._1._1 + " , " + tuple2._1._2 + " : " + tuple2._2._1() + " , "  + tuple2._2._2() + " , " + tuple2._2._3());
+        }
+
+
+//        corr.saveAsTextFile("/Users/zhoufy/sparktest/demo10out/");
     }
 
 
@@ -197,6 +208,7 @@ public class Demo10 implements Serializable {
     }
 
     private static double calculateJaccardCorrelation(double inCommon, double totalA, double totalB) {
+        System.out.println("calculateJaccardCorrelation : " + inCommon + " , " + totalA + " , " + totalB );
         double union = totalA + totalB - inCommon;
         return inCommon / union;
     }
