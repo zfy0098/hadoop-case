@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hadoop-version>2.7.6</hadoop-version>
         <!-- compile provided -->
-        <scope>compile</scope>
+        <scope>provided</scope>
         <spark.version>2.2.0</spark.version>
     </properties>
 
@@ -29,14 +29,6 @@
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-hdfs</artifactId>
-            <version>${hadoop-version}</version>
-            <scope>${scope}</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-mapreduce-client-core -->
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-mapreduce-client-core</artifactId>
             <version>${hadoop-version}</version>
             <scope>${scope}</scope>
         </dependency>
@@ -100,20 +92,7 @@
             <groupId>com.huaban</groupId>
             <artifactId>jieba-analysis</artifactId>
             <version>1.0.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/lib/jieba-analysis-1.0.3-SNAPSHOT.jar</systemPath>
         </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/com.huaban/jieba-analysis -->
-        <!--<dependency>-->
-            <!--<groupId>com.huaban</groupId>-->
-            <!--<artifactId>jieba-analysis</artifactId>-->
-            <!--<version>1.0.2</version>-->
-            <!--<scope>${scope}</scope>-->
-        <!--</dependency>-->
-
-
 
         <dependency>
             <groupId>org.apache.hbase</groupId>
@@ -122,10 +101,10 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>org.apache.hive</groupId>-->
-            <!--<artifactId>hive-exec</artifactId>-->
-            <!--<version>1.2.2</version>-->
-            <!--<scope>${scope}</scope>-->
+        <!--<groupId>org.apache.hive</groupId>-->
+        <!--<artifactId>hive-exec</artifactId>-->
+        <!--<version>1.2.2</version>-->
+        <!--<scope>${scope}</scope>-->
 
         <!--</dependency>-->
 
@@ -154,29 +133,73 @@
             <scope>${scope}</scope>
         </dependency>
 
-
-
         <!-- https://mvnrepository.com/artifact/edu.umd/cloud9 -->
+
+
         <dependency>
             <groupId>edu.umd</groupId>
             <artifactId>cloud9</artifactId>
-            <version>1.4.17</version>
+            <version>1.3.0-beta</version>
+           <!-- <exclusions>
+                <exclusion>
+                    &lt;!&ndash; https://mvnrepository.com/artifact/info.bliki.wiki/bliki-core &ndash;&gt;
+                    <groupId>info.bliki.wiki</groupId>
+                    <artifactId>bliki-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-common</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-hdfs</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-mapreduce-client-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-mapreduce-client-common</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.hbase</groupId>
+                    <artifactId>hbase-client</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.hbase</groupId>
+                    <artifactId>hbase-server</artifactId>
+                </exclusion>
+            </exclusions>-->
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/info.bliki.wiki/bliki-core -->
+        <dependency>
+            <groupId>info.bliki.wiki</groupId>
+            <artifactId>bliki-core</artifactId>
+            <version>3.0.19</version>
+        </dependency>
+
 
 
     </dependencies>
 
+
     <build>
+
+
+
         <finalName>hadoop</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
-            <plugin>
+
+           <!-- <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
                     <archive>
                         <manifest>
-                            <!--<mainClass>com.hadoop.leftouterjoin.Case</mainClass>-->
+                            <mainClass>com.TestCase</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -194,7 +217,46 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
+
+             <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-shade-plugin</artifactId>
+                 <version>2.4.3</version>
+                 <executions>
+                     <execution>
+                         <phase>package</phase>
+                         <goals>
+                             <goal>shade</goal>
+                         </goals>
+                         <configuration>
+                             <filters>
+                                 <filter>
+                                     <artifact>*:*</artifact>
+                                     <excludes>
+                                         <exclude>META-INF/*.SF</exclude>
+                                         <exclude>META-INF/*.DSA</exclude>
+                                         <exclude>META-INF/*.RSA</exclude>
+                                     </excludes>
+                                 </filter>
+                             </filters>
+
+                             <transformers>
+                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                     <!--<mainClass>com.snow.stekgroup.DubboTest</mainClass>-->
+                                 </transformer>
+                                 <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                     <resource>META-INF/spring.handlers</resource>
+                                 </transformer>
+                                 <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                     <resource>META-INF/spring.schemas</resource>
+                                 </transformer>
+
+                             </transformers>
+                         </configuration>
+                     </execution>
+                 </executions>
+             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -204,25 +266,6 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>
-                                ${project.build.directory}/lib
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
 
 

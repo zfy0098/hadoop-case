@@ -35,6 +35,14 @@ public class Job1 {
             job.setReducerClass(Job1Reducer.class);
             job.setMapOutputValueClass(IntWritable.class);
             job.setMapOutputKeyClass(Text.class);
+            /*
+            一个InputFormat纯文本文件。
+                文件分为几行。换行或回车用于发出行尾信号。每行由分隔符字节分为键和值部分。
+                如果不存在这样的字节，则键将是整行，值将为空。
+                可以在属性名称mapreduce.input.keyvaluelinerecordreader.key.value.separator
+                下的配置文件中指定分隔符字节。默认值是制表符（'\t'）。
+
+             */
             job.setInputFormatClass(KeyValueTextInputFormat.class);
             job.setNumReduceTasks(4);
 

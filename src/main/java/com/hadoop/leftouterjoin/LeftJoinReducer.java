@@ -3,6 +3,7 @@ package com.hadoop.leftouterjoin;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import edu.umd.cloud9.io.pair.PairOfStrings;
+
 import java.util.Iterator;
 
 /**
@@ -20,32 +21,32 @@ public class LeftJoinReducer extends Reducer<PairOfStrings, PairOfStrings, Text,
             throws java.io.IOException, InterruptedException {
 
 
-        Iterator<PairOfStrings> iterator = values.iterator();
-        while (iterator.hasNext()){
-            PairOfStrings pair = iterator.next();
+//        Iterator<PairOfStrings> iterator = values.iterator();
+//        while (iterator.hasNext()){
+//            PairOfStrings pair = iterator.next();
+//
+//            context.write(new Text(key.toString()), new Text(pair.toString()));
+//        }
 
-            context.write(new Text(key.toString()), new Text(pair.toString()));
+
+
+        Iterator<PairOfStrings> iterator = values.iterator();
+        if (iterator.hasNext()) {
+            // firstPair must be location pair
+            PairOfStrings firstPair = iterator.next();
+            System.out.println("firstPair="+firstPair.toString());
+            if (firstPair.getLeftElement().equals("L")) {
+                locationID.set(firstPair.getRightElement());
+            }
         }
 
-
-
-//        Iterator<PairOfStrings> iterator = values.iterator();
-//        if (iterator.hasNext()) {
-//            // firstPair must be location pair
-//            PairOfStrings firstPair = iterator.next();
-//            System.out.println("firstPair="+firstPair.toString());
-//            if (firstPair.getLeftElement().equals("L")) {
-//                locationID.set(firstPair.getRightElement());
-//            }
-//        }
-//
-//        while (iterator.hasNext()) {
-//            // the remaining elements must be product pair
-//            PairOfStrings productPair = iterator.next();
-//            System.out.println("productPair="+productPair.toString());
-//            productID.set(productPair.getRightElement());
-//            context.write(productID, locationID);
-//        }
+        while (iterator.hasNext()) {
+            // the remaining elements must be product pair
+            PairOfStrings productPair = iterator.next();
+            System.out.println("productPair="+productPair.toString());
+            productID.set(productPair.getRightElement());
+            context.write(productID, locationID);
+        }
     }
 
 }

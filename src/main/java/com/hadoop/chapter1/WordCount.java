@@ -66,12 +66,12 @@ public class WordCount {
         }
         file.close();
 
-////        map的压缩输出
-//        configuration.setBoolean("mapred.compress.map.out", true);
-//        configuration.setClass(Job.MAP_OUTPUT_COMPRESS_CODEC, GzipCodec.class, CompressionCodec.class);
-//
-////        reduce的压缩输出
-//        configuration.setBoolean("mapred.output.compress", true);
+//        map的压缩输出
+        configuration.setBoolean("mapred.compress.map.out", true);
+        configuration.setClass(Job.MAP_OUTPUT_COMPRESS_CODEC, GzipCodec.class, CompressionCodec.class);
+
+//        reduce的压缩输出
+        configuration.setBoolean("mapred.output.compress", true);
 
 
         Job job = Job.getInstance(configuration, "wordCount");

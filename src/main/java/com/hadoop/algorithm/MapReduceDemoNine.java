@@ -1,5 +1,6 @@
 package com.hadoop.algorithm;
 
+import org.apache.calcite.util.Pair;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -62,6 +63,7 @@ public class MapReduceDemoNine {
 
 
             Map<String, List<String>> mutualFriends = new HashMap<>();
+
 
             for (Text t2 : values) {
                 String toUser = t2.toString().split("####")[0];
