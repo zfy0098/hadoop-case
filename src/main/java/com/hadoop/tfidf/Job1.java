@@ -36,11 +36,15 @@ public class Job1 {
             job.setMapOutputValueClass(IntWritable.class);
             job.setMapOutputKeyClass(Text.class);
             /*
-            一个InputFormat纯文本文件。
-                文件分为几行。换行或回车用于发出行尾信号。每行由分隔符字节分为键和值部分。
-                如果不存在这样的字节，则键将是整行，值将为空。
-                可以在属性名称mapreduce.input.keyvaluelinerecordreader.key.value.separator
-                下的配置文件中指定分隔符字节。默认值是制表符（'\t'）。
+                KeyValueTextInputFormat
+                    一个InputFormat纯文本文件。
+                    文件分为几行。换行或回车用于发出行尾信号。每行由分隔符字节分为键和值部分。
+                    如果不存在这样的字节，则键将是整行，值将为空。
+                    可以在属性名称mapreduce.input.keyvaluelinerecordreader.key.value.separator
+                    下的配置文件中指定分隔符字节。默认值是制表符（'\t'）。
+
+                 TextInputFormat，
+                    它提供的 RecordReader 会将文本的行号作为 Key，这一行的文本作为 Value。这就是自定义 Mapper 的输入是 < LongWritable,Text> 的原因
 
              */
             job.setInputFormatClass(KeyValueTextInputFormat.class);

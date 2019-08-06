@@ -1,6 +1,9 @@
 package com;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 /**
  * Created with IDEA by ChouFy on 2019/5/30.
@@ -27,14 +30,15 @@ public class Test {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        deleteDir("/Users/zhoufy/sparktest/demo10out");
 
-//        File file = new File("/Users/zhoufy/sparktest/out10");
-//        System.out.println(file.exists());
-//        file.delete();
-//        System.out.println(file.exists());
+        List<String> list = Files.readAllLines(Paths.get("/Users/zhoufy/Desktop/friend"));
 
+        String line = list.get(0);
+        String[] ss = line.split("\t");
+        for (String s : ss){
+            System.out.println(s);
+        }
     }
 }

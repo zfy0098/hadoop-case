@@ -4,7 +4,7 @@ import static java.lang.Math.max;
 
 /**
  * Created with IDEA by ChouFy on 2019/2/25.
- *   最长公共子序列
+ * 最长公共子序列
  *
  * @author Zhoufy
  */
@@ -66,7 +66,7 @@ public class LongestCommonSubsequence {
     }
 
     public static void Display(int[][] b, String[] x, int i, int j) {
-        if (i == 0 || j == 0){
+        if (i == 0 || j == 0) {
             return;
         }
         if (b[i][j] == 1) {
@@ -84,11 +84,7 @@ public class LongestCommonSubsequence {
         String text = "a";
 
 
-
-
-
-
-        System.out.println(text.substring(0 , 0));
+        System.out.println(text.substring(0, 0));
 
 //        String s1 = "abcbdab";
 //        String s2 = "bdcaba";
@@ -105,9 +101,9 @@ public class LongestCommonSubsequence {
         int len1 = a.length();
         int len2 = b.length();
 
-        for (int i = 1 ; i < len1 + 1 ; i++){
-            for (int j = 1; j < len2 + 1; j ++){
-                if(a.substring(i-1,i).equals(b.substring(j-1, j))){
+        for (int i = 1; i < len1 + 1; i++) {
+            for (int j = 1; j < len2 + 1; j++) {
+                if (a.substring(i - 1, i).equals(b.substring(j - 1, j))) {
                     len_vv[i][j] = 1 + len_vv[i - 1][j - 1];
                 } else {
                     len_vv[i][j] = max(len_vv[i - 1][j], len_vv[i][j - 1]);
