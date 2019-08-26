@@ -17,8 +17,8 @@ public class ParamsUtils {
 
     public static String JAR_PATH = "/Users/zhoufy/Documents/ideaProject/hadoop-case/out/artifacts/com_hadoop_jar/com.hadoop.jar";
 
-    public static Job pretreatment(String[] args , int paramsLength) throws Exception {
-        if (args.length != paramsLength && args.length < 2) {
+    public static Job pretreatment(String[] args, int paramsLength) throws Exception {
+        if (args.length != paramsLength && args.length < paramsLength) {
             throw new Exception("args length error");
         }
 
@@ -27,6 +27,11 @@ public class ParamsUtils {
 
         Configuration configuration = new Configuration();
 
+        configuration.addResource("hdfs-site.xml");
+        configuration.addResource("core-site.xml");
+        configuration.addResource("mapred-site.xml");
+        configuration.addResource("yarn-site.xml");
+
         Path path = new Path(out);
         FileSystem fs = FileSystem.get(configuration);
         if (fs.exists(path)) {
@@ -34,17 +39,13 @@ public class ParamsUtils {
         }
         fs.close();
 
-        configuration.addResource("hdfs-site.xml");
-        configuration.addResource("core-site.xml");
-        configuration.addResource("mapred-site.xml");
-        configuration.addResource("yarn-site.xml");
-
         // 如果要从windows系统中运行这个job提交客户端的程序，则需要加这个跨平台提交的参数
-        configuration.set("mapreduce.app-submission.cross-platform","true");
-
+        configuration.set("mapreduce.app-submission.cross-platform", "true");
 
 
         Job job = Job.getInstance(configuration);
+        job.setJar(ParamsUtils.JAR_PATH);
+
         FileInputFormat.setInputPaths(job, new Path(input));
         FileOutputFormat.setOutputPath(job, new Path(out));
 
