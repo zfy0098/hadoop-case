@@ -36,7 +36,7 @@ public class Job1 {
             job.setMapOutputValueClass(IntWritable.class);
             job.setMapOutputKeyClass(Text.class);
             /*
-                KeyValueTextInputFormat
+                See : KeyValueTextInputFormat
                     一个InputFormat纯文本文件。
                     文件分为几行。换行或回车用于发出行尾信号。每行由分隔符字节分为键和值部分。
                     如果不存在这样的字节，则键将是整行，值将为空。
