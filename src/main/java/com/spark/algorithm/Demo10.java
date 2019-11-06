@@ -82,7 +82,7 @@ public class Demo10 implements Serializable {
         List<Tuple2<String, Tuple3<String, Integer, Integer>>> userRDDList = userRDD.collect();
         for (Tuple2<String, Tuple3<String, Integer, Integer>> tuple2 : userRDDList) {
             //  打印结果 用户 电影  评分  评分人数
-            System.out.println("userRDDList   debug 2 -- " + tuple2._1 + "--- values :" + tuple2._2 + " , " + tuple2._2._1() + "\t" + tuple2._2._2() + "\t" + tuple2._2._3() + "\t");
+            System.out.println("打印结果 用户 电影  评分  评分人数 ：userRDDList   debug 2 -- " + tuple2._1 + "--- values :" + tuple2._2 + " , " + tuple2._2._1() + "\t" + tuple2._2._2() + "\t" + tuple2._2._3() + "\t");
         }
 
         JavaPairRDD<String, Iterable<Tuple3<String, Integer, Integer>>> groupedByUser = userRDD.groupByKey();
@@ -128,6 +128,7 @@ public class Demo10 implements Serializable {
 
             Tuple7<Integer, Integer, Integer, Integer, Integer, Integer, Integer> tuple7 = new Tuple7<>(movie1._2(),
                     movie1._3(), movie2._2(), movie2._3(), ratingProduct, rating1Squared, rating2Squared);
+            System.out.println("filteredRDD.mapToPair : tuple7 ->: "  + tuple7.toString());
             return new Tuple2<>(m1m2key, tuple7);
         });
 
@@ -191,7 +192,7 @@ public class Demo10 implements Serializable {
 
         double jaccard = calculateJaccardCorrelation(groupSize, maxNumOfRaterS1, maxNumOfRaterS2);
 
-        return new Tuple3<>(pearson, cosine, jaccard);
+        return new Tuple3<>(0d, 0d, jaccard);
     }
 
 

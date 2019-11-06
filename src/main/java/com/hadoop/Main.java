@@ -1,16 +1,17 @@
 package com.hadoop;
 
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+
 /**
+ *  * 本类是演示使用apktool在动态的解压，打包，签名一个apk，用来向apk写入一些信息，比如推广的时候
+ *  * 使用本类需要在执行的机器上面配置java，apktool。
+ *
  * Created with IDEA by ChouFy on 2019/6/5.
  *
  * @author Zhoufy
- */
-import java.io.*;
-/**
- * 本类是演示使用apktool在动态的解压，打包，签名一个apk，用来向apk写入一些信息，比如推广的时候
- * 使用本类需要在执行的机器上面配置java，apktool。
- * Author:Mr.Jie
- * DateTime:16-11-6 上午11:02
  */
 public class Main {
     public static void main(String[] args) {

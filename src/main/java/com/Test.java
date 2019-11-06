@@ -33,12 +33,7 @@ public class Test {
     public static void main(String[] args) throws Exception {
 
 
-        List<String> list = Files.readAllLines(Paths.get("/Users/zhoufy/Desktop/friend"));
-
-        String line = list.get(0);
-        String[] ss = line.split("\t");
-        for (String s : ss){
-            System.out.println(s);
-        }
     }
 }
+
+

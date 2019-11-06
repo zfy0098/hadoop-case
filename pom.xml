@@ -120,7 +120,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.51</version>
-            <scope>${scope}</scope>
 
         </dependency>
 
@@ -138,7 +137,6 @@
             <groupId>org.apache.thrift</groupId>
             <artifactId>libthrift</artifactId>
             <version>0.9.3</version>
-            <scope>${scope}</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/edu.umd/cloud9 -->
@@ -201,10 +199,10 @@
                 <targetPath>${project.build.directory}/classes</targetPath>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
-               <!-- <excludes>
+                <excludes>
                     <exclude>**/*.xml</exclude>
                     <exclude>**/*.properties</exclude>
-                </excludes>-->
+                </excludes>
             </resource>
         </resources>
 
