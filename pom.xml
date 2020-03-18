@@ -85,6 +85,12 @@
             <artifactId>spark-core_2.11</artifactId>
             <version>${spark.version}</version>
             <scope>${spark-scope}</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-client</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
@@ -141,42 +147,41 @@
 
         <!-- https://mvnrepository.com/artifact/edu.umd/cloud9 -->
 
-
         <dependency>
             <groupId>edu.umd</groupId>
             <artifactId>cloud9</artifactId>
             <version>1.3.0-beta</version>
-           <!-- <exclusions>
-                <exclusion>
-                    &lt;!&ndash; https://mvnrepository.com/artifact/info.bliki.wiki/bliki-core &ndash;&gt;
-                    <groupId>info.bliki.wiki</groupId>
-                    <artifactId>bliki-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.hadoop</groupId>
-                    <artifactId>hadoop-common</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.hadoop</groupId>
-                    <artifactId>hadoop-hdfs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.hadoop</groupId>
-                    <artifactId>hadoop-mapreduce-client-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.hadoop</groupId>
-                    <artifactId>hadoop-mapreduce-client-common</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.hbase</groupId>
-                    <artifactId>hbase-client</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.hbase</groupId>
-                    <artifactId>hbase-server</artifactId>
-                </exclusion>
-            </exclusions>-->
+            <!-- <exclusions>
+                 <exclusion>
+                     &lt;!&ndash; https://mvnrepository.com/artifact/info.bliki.wiki/bliki-core &ndash;&gt;
+                     <groupId>info.bliki.wiki</groupId>
+                     <artifactId>bliki-core</artifactId>
+                 </exclusion>
+                 <exclusion>
+                     <groupId>org.apache.hadoop</groupId>
+                     <artifactId>hadoop-common</artifactId>
+                 </exclusion>
+                 <exclusion>
+                     <groupId>org.apache.hadoop</groupId>
+                     <artifactId>hadoop-hdfs</artifactId>
+                 </exclusion>
+                 <exclusion>
+                     <groupId>org.apache.hadoop</groupId>
+                     <artifactId>hadoop-mapreduce-client-core</artifactId>
+                 </exclusion>
+                 <exclusion>
+                     <groupId>org.apache.hadoop</groupId>
+                     <artifactId>hadoop-mapreduce-client-common</artifactId>
+                 </exclusion>
+                 <exclusion>
+                     <groupId>org.apache.hbase</groupId>
+                     <artifactId>hbase-client</artifactId>
+                 </exclusion>
+                 <exclusion>
+                     <groupId>org.apache.hbase</groupId>
+                     <artifactId>hbase-server</artifactId>
+                 </exclusion>
+             </exclusions>-->
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/info.bliki.wiki/bliki-core -->
