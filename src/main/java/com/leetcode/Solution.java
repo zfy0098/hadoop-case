@@ -112,12 +112,18 @@ public class Solution {
         return ans;
     }
 
+
+
     public static void main(String[] args) {
 //        Solution.twoSum(new int[]{2, 7, 11, 15}, 9);
 //        ListNode listNode = Solution.addTwoNumbers(new ListNode(2), new ListNode(3));
-        int ans = Solution.lengthOfLongestSubstring("abcdefsdfgabdcd");
+        int ans = Solution.lengthOfLongestSubstring("abcdefga");
         System.out.println(ans);
+
+
     }
+
+
 
 
 }

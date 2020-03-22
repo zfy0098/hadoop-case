@@ -3,6 +3,7 @@ package com;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,7 +31,41 @@ public class Test {
     }
 
 
+
+
+    public static void test(int[] nums, int num){
+
+        boolean flag = true;
+        int[] files = new int[nums.length + 1];
+        for (int i = 0; i < nums.length; i++){
+            int x = nums[i];
+            if(x > num){
+                if(flag){
+                    files[i] = num;
+                    flag = false;
+                }
+                files[i + 1] = x;
+
+            } else {
+                files[i] = x;
+            }
+        }
+
+
+        System.out.println(Arrays.toString(files));
+
+
+    }
+
+
+
     public static void main(String[] args) throws Exception {
+
+
+        test(new int[]{1,2,3,5,6,7,8,9,15,19,24,28,31,34} , 25);
+
+
+
 
 
     }

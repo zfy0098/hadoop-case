@@ -52,7 +52,6 @@ public class IsRectangleOverlap {
        int rec1[] = {0,1,2,3};
        int rec2[] = {2,3,3,4};
        boolean flag = isRectangleOverlap(rec1, rec2);
-        System.out.println(flag);
-
+       System.out.println(flag);
     }
 }
