@@ -36,12 +36,12 @@
     </property>
     <property>
         <name>mapreduce.jobhistory.done-dir</name>
-        <value>/history/done</value>
+        <value>/opt/hadoop/history/done</value>
     </property>
 
     <property>
         <name>mapreduce.jobhistory.intermediate-done-dir</name>
-        <value>/history/done_intermediate</value>
+        <value>/opt/hadoop/history/done_intermediate</value>
     </property>
 
     <property>

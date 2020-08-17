@@ -24,8 +24,6 @@ public class MinIncrementForUnique {
             }
         }
         long l1 = System.currentTimeMillis();
-        System.out.println(l1 - l);
-
         return j;
     }
 

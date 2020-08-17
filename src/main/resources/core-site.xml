@@ -23,10 +23,10 @@
         <value>/opt/hadoop/tmp</value>
     </property>
 
-<property>  
-        <name>fs.defalutFS</name>  
-        <value>hdfs://master:8020</value>  
-</property> 
+    <property>
+        <name>fs.defalutFS</name>
+        <value>hdfs://master:8020</value>
+    </property>
     <property>
         <name>fs.default.name</name>
         <value>hdfs://master:9000</value>

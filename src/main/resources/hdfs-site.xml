@@ -17,12 +17,12 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
- <property>
+    <property>
         <name>dfs.replication</name>
-        <value>2</value>
+        <value>5</value>
     </property>
 
- <property>
+    <property>
         <name>dfs.namenode.secondary.http-address</name>
         <value>master:9001</value>
     </property>
@@ -34,8 +34,8 @@
         <name>dfs.datanode.data.dir</name>
         <value>file:/opt/hadoop/dfs/data</value>
     </property>
-<property>
-     <name>dfs.http.address</name>
-     <value>master:50070</value>
-</property>
+    <property>
+        <name>dfs.http.address</name>
+        <value>master:50070</value>
+    </property>
 </configuration>

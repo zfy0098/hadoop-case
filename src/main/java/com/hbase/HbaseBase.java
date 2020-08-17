@@ -19,7 +19,7 @@ public class HbaseBase {
 
     protected static Connection connection = null;
 
-    protected static String tableName = "app_role";
+    protected static String tableName = "friendship";
 
     protected static Table table = null;
 

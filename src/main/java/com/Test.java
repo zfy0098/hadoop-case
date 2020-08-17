@@ -62,7 +62,6 @@ public class Test {
     public static void main(String[] args) throws Exception {
 
 
-        test(new int[]{1,2,3,5,6,7,8,9,15,19,24,28,31,34} , 25);
 
 
 

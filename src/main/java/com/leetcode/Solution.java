@@ -54,29 +54,29 @@ public class Solution {
      * @param l2
      * @return
      */
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode root = new ListNode(0);
-        ListNode currsor = root;
-        int carry = 0;
-        while (l1 != null || l2 != null || carry != 0) {
-            int l1val = l1 != null ? l1.val : 0;
-            int l2val = l2 != null ? l2.val : 0;
-            int sumVal = l1val + l2val + carry;
-            carry = sumVal / 10;
-            ListNode sumNode = new ListNode(sumVal % 10);
-            currsor.next = sumNode;
-            currsor = sumNode;
-
-            if (l1 != null) {
-                l1 = l1.next;
-            }
-            if (l2 != null) {
-                l2 = l2.next;
-            }
-        }
-        return root.next;
-
-    }
+//    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+//        ListNode root = new ListNode(0);
+//        ListNode currsor = root;
+//        int carry = 0;
+//        while (l1 != null || l2 != null || carry != 0) {
+//            int l1val = l1 != null ? l1.val : 0;
+//            int l2val = l2 != null ? l2.val : 0;
+//            int sumVal = l1val + l2val + carry;
+//            carry = sumVal / 10;
+//            ListNode sumNode = new ListNode(sumVal % 10);
+//            currsor.next = sumNode;
+//            currsor = sumNode;
+//
+//            if (l1 != null) {
+//                l1 = l1.next;
+//            }
+//            if (l2 != null) {
+//                l2 = l2.next;
+//            }
+//        }
+//        return root.next;
+//
+//    }
 
 
     /**
